@@ -1,0 +1,4 @@
+interface:
+  display_name: "Video Score Transcription"
+  short_description: "Transcribe videos with synchronized performance and sheet music"
+  default_prompt: "Use $video-score-transcription to turn the synchronized score and audible performance in this video into an editable score and a checked PDF."

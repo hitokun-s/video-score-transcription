@@ -1,0 +1,22 @@
+{
+  "name": "video-score-transcription",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "lint": "eslint scripts/*.mjs",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "dependencies": {
+    "abcjs": "6.7.2",
+    "playwright-core": "1.65.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "9.39.5",
+    "eslint": "9.39.5",
+    "globals": "17.14.0",
+    "prettier": "3.9.10"
+  }
+}
