@@ -23,11 +23,23 @@ for (let i = 0; i < options.length; i++) {
   } else throw new Error(`Unknown/incomplete option: ${options[i]}`);
 }
 const require = createRequire(path.join(path.resolve(deps), "package.json"));
-const { chromium } = require("playwright-core");
-const js = fs.readFileSync(
-  require.resolve("abcjs/dist/abcjs-basic-min.js"),
-  "utf8",
-);
+let chromium, js;
+try {
+  ({ chromium } = require("playwright-core"));
+  js = fs.readFileSync(
+    require.resolve("abcjs/dist/abcjs-basic-min.js"),
+    "utf8",
+  );
+} catch (error) {
+  console.error(
+    `abcjs and playwright-core were not found under ${path.resolve(deps)}.\n` +
+      "Install them in a task directory and pass it with --deps, e.g.\n" +
+      "  npm install --prefix ./task-tools abcjs playwright-core\n" +
+      "  node render-abc.mjs score.abc score.pdf --deps ./task-tools",
+  );
+  console.error(String(error.message));
+  process.exit(1);
+}
 const abc = fs.readFileSync(input, "utf8");
 if (!chrome)
   chrome = [
